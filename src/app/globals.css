@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+:root {
+  --background: #fbf9f4;
+  --foreground: #141b1a;
+  
+  --forest-950: #091a13;
+  --forest-900: #0f2b20;
+  --forest-850: #14382b;
+  --forest-800: #1b4332;
+  --forest-700: #245842;
+  --forest-600: #2d6a4f;
+  --forest-100: #e7f2ed;
+  --forest-50: #f2f7f4;
+
+  --coral-600: #c8442c;
+  --coral-500: #e2583e;
+  --coral-400: #ec6f57;
+  --coral-100: #fdf0ed;
+  --coral-50: #fff6f4;
+
+  --ivory-50: #fdfcf9;
+  --ivory-100: #fbf9f4;
+  --ivory-200: #f4efe4;
+  --ivory-300: #e7dfd0;
+  
+  --charcoal-900: #121817;
+  --charcoal-800: #1e2826;
+  --charcoal-700: #2d3b38;
+  --charcoal-500: #4e605c;
+  --charcoal-400: #798c88;
+}
+
+@theme {
+  --color-forest-950: var(--forest-950);
+  --color-forest-900: var(--forest-900);
+  --color-forest-850: var(--forest-850);
+  --color-forest-800: var(--forest-800);
+  --color-forest-700: var(--forest-700);
+  --color-forest-600: var(--forest-600);
+  --color-forest-100: var(--forest-100);
+  --color-forest-50: var(--forest-50);
+
+  --color-coral-600: var(--coral-600);
+  --color-coral-500: var(--coral-500);
+  --color-coral-400: var(--coral-400);
+  --color-coral-100: var(--coral-100);
+  --color-coral-50: var(--coral-50);
+
+  --color-ivory-50: var(--ivory-50);
+  --color-ivory-100: var(--ivory-100);
+  --color-ivory-200: var(--ivory-200);
+  --color-ivory-300: var(--ivory-300);
+
+  --color-charcoal-900: var(--charcoal-900);
+  --color-charcoal-800: var(--charcoal-800);
+  --color-charcoal-700: var(--charcoal-700);
+  --color-charcoal-500: var(--charcoal-500);
+  --color-charcoal-400: var(--charcoal-400);
+
+  --font-serif: var(--font-playfair), Georgia, serif;
+  --font-sans: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--ivory-100);
+  color: var(--charcoal-900);
+  font-family: var(--font-jakarta), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f4efe4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c9bea9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a99d86;
+}
+
+::selection {
+  background: #1b4332;
+  color: #ffffff;
+}
+
+/* Print styling for receipts */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #printable-receipt, #printable-receipt * {
+    visibility: visible;
+  }
+  #printable-receipt {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
