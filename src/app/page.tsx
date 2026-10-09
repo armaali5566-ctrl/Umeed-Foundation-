@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
+import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import InteractiveDonationWidget from '@/components/InteractiveDonationWidget';
@@ -10,38 +11,23 @@ import StoriesSection from '@/components/StoriesSection';
 import OfflineDonationSection from '@/components/OfflineDonationSection';
 import FaqSection from '@/components/FaqSection';
 import Footer from '@/components/Footer';
-import DonationModal from '@/components/DonationModal';
 import { ToastProvider } from '@/components/Toast';
 import { CampaignId, DonationSelection } from '@/types/donation';
 import { Heart } from 'lucide-react';
 
 export default function HomePage() {
-  const [modalOpen, setModalOpen] = useState(false);
-  const [selectedDonation, setSelectedDonation] = useState<DonationSelection | null>(null);
+  const router = useRouter();
 
   const handleOpenDonate = (campaignId?: CampaignId) => {
     if (campaignId) {
-      setSelectedDonation({
-        campaignId,
-        campaignTitle:
-          campaignId === 'heartbeats'
-            ? 'Little Heartbeats'
-            : campaignId === 'shikshalaya'
-            ? 'Shikshalaya'
-            : 'Chuppi Todo',
-        frequency: campaignId === 'shikshalaya' ? 'monthly' : 'one-time',
-        amount: campaignId === 'heartbeats' ? 5000 : campaignId === 'shikshalaya' ? 1200 : 1500,
-        isCustomAmount: false,
-      });
+      router.push(`/donate?campaign=${campaignId}`);
     } else {
-      setSelectedDonation(null);
+      router.push('/donate');
     }
-    setModalOpen(true);
   };
 
   const handleCampaignSelect = (selection: DonationSelection) => {
-    setSelectedDonation(selection);
-    setModalOpen(true);
+    router.push(`/donate?campaign=${selection.campaignId}`);
   };
 
   return (
@@ -76,13 +62,6 @@ export default function HomePage() {
 
         {/* Footer */}
         <Footer />
-
-        {/* Global Unified Donation Flow Modal */}
-        <DonationModal
-          isOpen={modalOpen}
-          onClose={() => setModalOpen(false)}
-          initialSelection={selectedDonation}
-        />
 
         {/* Optional Sticky Mobile Bottom Donate Bar (Convenient for mobile screens) */}
         <div className="fixed bottom-0 left-0 right-0 z-30 p-3 bg-white/95 backdrop-blur-md border-t border-[#E7DFD0] sm:hidden flex items-center justify-between shadow-lg">
